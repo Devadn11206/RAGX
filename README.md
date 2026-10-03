@@ -18,35 +18,52 @@ To improve context relevance, RAGX utilizes a parallel Hybrid Retrieval pipeline
 
 ## Architecture & Flow
 
-```
-Query
- ↓
-Tenant Authorization
- ↓
-Semantic Cache
- ↓
-Query Analysis
- ↓
-Cost-Aware Routing
- ↓
-Hybrid Retrieval
- ├── Vector
- ├── Lexical
- └── GraphRAG
- ↓
-RRF Fusion
- ↓
-Cross-Encoder Reranking
- ↓
-MMR
- ↓
-LLM
- ├── Gemini
- └── Groq fallback
- ↓
-Answer + Citations
- ↓
-Telemetry / Audit
+```mermaid
+flowchart TD
+    User([USER]) --> UI[Streamlit Dashboard]
+    User --> API[FastAPI API]
+    UI --> API
+    
+    subgraph FastAPI Application
+        API --> Auth[Auth & Tenant Verification]
+        Auth --> Cache{Semantic Cache}
+        Cache -- Hit --> CachedResp[Cached Response]
+        Cache -- Miss --> QA[Query Analysis]
+        QA --> Router{Cost-Aware Router}
+        
+        subgraph Hybrid Retrieval Engine
+            Router --> Vector[Vector Search]
+            Router --> Lexical[Lexical Search]
+            Router --> Graph[GraphRAG]
+            
+            Vector --> RRF[RRF Fusion]
+            Lexical --> RRF
+            Graph --> RRF
+        end
+        
+        RRF --> Reranker[Cross-Encoder Reranker]
+        Reranker --> MMR[MMR Context Selection]
+        
+        MMR --> LLM{LLM Orchestrator}
+        LLM --> Gemini[Gemini 1.5]
+        LLM -- Fallback / 429 --> Groq[Groq Llama 3]
+        
+        Gemini --> Output[Cited Answer]
+        Groq --> Output
+        
+        Output --> Telemetry[Telemetry & Audit]
+    end
+    
+    subgraph Infrastructure
+        Cache -.- Redis[(Redis)]
+        Vector -.- Qdrant[(Qdrant)]
+        Lexical -.- Postgres[(PostgreSQL)]
+        Graph -.- Neo4j[(Neo4j)]
+        Telemetry -.- Postgres
+    end
+    
+    CachedResp --> User
+    Output --> User
 ```
 
 ## Tech Stack
