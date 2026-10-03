@@ -1,0 +1,81 @@
+{
+  "total_requests": 10,
+  "gemini_success_rate": 0.0,
+  "groq_fallback_rate": 30.0,
+  "final_success_rate": 30.0,
+  "average_cost": 4.416e-06,
+  "average_latency_ms": 1003.6,
+  "circuit_breaker_state": "OPEN",
+  "details": [
+    {
+      "query": "What is the company leave policy?",
+      "provider": null,
+      "fallback_used": false,
+      "fallback_reason": null,
+      "latency_ms": 983
+    },
+    {
+      "query": "What is the internal guide?",
+      "provider": "groq",
+      "fallback_used": true,
+      "fallback_reason": "circuit_breaker_open",
+      "latency_ms": 1298
+    },
+    {
+      "query": "Why does the internal guide exist?",
+      "provider": "groq",
+      "fallback_used": true,
+      "fallback_reason": "circuit_breaker_open",
+      "latency_ms": 1226
+    },
+    {
+      "query": "What happens if I fail on purpose?",
+      "provider": null,
+      "fallback_used": false,
+      "fallback_reason": null,
+      "latency_ms": 640
+    },
+    {
+      "query": "Tell me about ACME.",
+      "provider": "groq",
+      "fallback_used": true,
+      "fallback_reason": "circuit_breaker_open",
+      "latency_ms": 1614
+    },
+    {
+      "query": "Tell me about Globex.",
+      "provider": null,
+      "fallback_used": false,
+      "fallback_reason": null,
+      "latency_ms": 1054
+    },
+    {
+      "query": "Tell me about security.",
+      "provider": null,
+      "fallback_used": false,
+      "fallback_reason": null,
+      "latency_ms": 822
+    },
+    {
+      "query": "Tell me about benefits.",
+      "provider": null,
+      "fallback_used": false,
+      "fallback_reason": null,
+      "latency_ms": 790
+    },
+    {
+      "query": "Tell me about remote work.",
+      "provider": null,
+      "fallback_used": false,
+      "fallback_reason": null,
+      "latency_ms": 885
+    },
+    {
+      "query": "Tell me about offices.",
+      "provider": null,
+      "fallback_used": false,
+      "fallback_reason": null,
+      "latency_ms": 724
+    }
+  ]
+}

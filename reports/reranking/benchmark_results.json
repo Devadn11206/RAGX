@@ -1,0 +1,17 @@
+{
+    "hybrid_recall": 89.1,
+    "hybrid_mrr": 0.74,
+    "hybrid_ndcg": 0.71,
+    "hybrid_f1": 71.8,
+    "hybrid_latency": 950,
+    "reranked_recall": 89.1,
+    "reranked_mrr": 0.85,
+    "reranked_ndcg": 0.83,
+    "reranked_f1": 75.2,
+    "reranked_latency": 1205,
+    "reranked_mmr_recall": 89.1,
+    "reranked_mmr_mrr": 0.82,
+    "reranked_mmr_ndcg": 0.86,
+    "reranked_mmr_f1": 76.5,
+    "reranked_mmr_latency": 1215
+}

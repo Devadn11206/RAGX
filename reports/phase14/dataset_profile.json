@@ -1,0 +1,15 @@
+{
+  "total_questions": 50,
+  "types": {
+    "factual": 10,
+    "semantic": 10,
+    "lexical": 10,
+    "multi-hop": 5,
+    "comparison": 3,
+    "policy": 2,
+    "adversarial": 5,
+    "tenant-specific": 5
+  },
+  "documents": 3,
+  "multi_hop": 5
+}

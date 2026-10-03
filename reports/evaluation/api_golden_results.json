@@ -1,0 +1,23 @@
+{
+  "results": [
+    {
+      "id": "TC-API-01",
+      "pass": true,
+      "citation_ok": true,
+      "latency_ms": 2248.0
+    },
+    {
+      "id": "TC-API-02",
+      "pass": true,
+      "citation_ok": true,
+      "latency_ms": 2138.0
+    },
+    {
+      "id": "TC-API-03",
+      "pass": true,
+      "citation_ok": true,
+      "latency_ms": 2103.0
+    }
+  ],
+  "all_pass": true
+}

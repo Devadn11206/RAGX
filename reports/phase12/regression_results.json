@@ -1,0 +1,246 @@
+{
+  "total": 47,
+  "passed": 47,
+  "failed": 0,
+  "skipped": 0,
+  "errors": 0,
+  "duration_seconds": 246.96,
+  "exit_code": 0,
+  "results": [
+    {
+      "nodeid": "tests/cache/test_semantic_cache.py::test_cross_tenant_cache_attack",
+      "outcome": "passed",
+      "duration": 1.0528438999972423
+    },
+    {
+      "nodeid": "tests/cache/test_semantic_cache.py::test_cross_role_cache_attack",
+      "outcome": "passed",
+      "duration": 1.2406203000064124
+    },
+    {
+      "nodeid": "tests/cache/test_semantic_cache.py::test_permission_revocation_invalidation",
+      "outcome": "passed",
+      "duration": 4.511644900005194
+    },
+    {
+      "nodeid": "tests/cache/test_semantic_cache.py::test_user_specific_query_rejected",
+      "outcome": "passed",
+      "duration": 0.5213707000002614
+    },
+    {
+      "nodeid": "tests/cache/test_semantic_cache.py::test_near_miss_protection",
+      "outcome": "passed",
+      "duration": 10.35844580000412
+    },
+    {
+      "nodeid": "tests/graph/test_graph_integration.py::test_graph_extraction_logic",
+      "outcome": "passed",
+      "duration": 0.5258843999981764
+    },
+    {
+      "nodeid": "tests/graph/test_graph_security.py::test_graph_isolation_tenant_service",
+      "outcome": "passed",
+      "duration": 0.01884559999598423
+    },
+    {
+      "nodeid": "tests/graph/test_graph_security.py::test_graph_isolation_api",
+      "outcome": "passed",
+      "duration": 14.606176300003426
+    },
+    {
+      "nodeid": "tests/hybrid/test_hybrid_security.py::test_hybrid_security_isolation",
+      "outcome": "passed",
+      "duration": 0.12352969999483321
+    },
+    {
+      "nodeid": "tests/integration/test_api.py::test_api_upload_invalid_file",
+      "outcome": "passed",
+      "duration": 0.1111901999975089
+    },
+    {
+      "nodeid": "tests/integration/test_health.py::test_health_endpoint",
+      "outcome": "passed",
+      "duration": 0.005307300001732074
+    },
+    {
+      "nodeid": "tests/integration/test_health.py::test_detailed_health_endpoint",
+      "outcome": "passed",
+      "duration": 0.024965299999166746
+    },
+    {
+      "nodeid": "tests/integration/test_retrieval.py::test_embedding_generation",
+      "outcome": "passed",
+      "duration": 0.023146400002588052
+    },
+    {
+      "nodeid": "tests/providers/test_circuit_breaker.py::test_provider_008_circuit_breaker",
+      "outcome": "passed",
+      "duration": 3.5424877000041306
+    },
+    {
+      "nodeid": "tests/providers/test_fallback.py::test_provider_001_primary_or_quota_fallback",
+      "outcome": "passed",
+      "duration": 1.8999148000002606
+    },
+    {
+      "nodeid": "tests/providers/test_fallback.py::test_provider_002_timeout_falls_back",
+      "outcome": "passed",
+      "duration": 23.57444140000007
+    },
+    {
+      "nodeid": "tests/providers/test_fallback.py::test_provider_003_gemini_500",
+      "outcome": "passed",
+      "duration": 28.223500799998874
+    },
+    {
+      "nodeid": "tests/providers/test_fallback.py::test_provider_004_429_quota_immediate_fallback_no_retries",
+      "outcome": "passed",
+      "duration": 28.062651299995196
+    },
+    {
+      "nodeid": "tests/providers/test_fallback.py::test_provider_007_both_fail",
+      "outcome": "passed",
+      "duration": 1.0728621000016574
+    },
+    {
+      "nodeid": "tests/reranking/test_reranking_security.py::test_reranking_security_isolation",
+      "outcome": "passed",
+      "duration": 1.0965973000056692
+    },
+    {
+      "nodeid": "tests/reranking/test_reranking_security.py::test_prompt_injection_in_reranker",
+      "outcome": "passed",
+      "duration": 0.2282539999941946
+    },
+    {
+      "nodeid": "tests/router/test_cost_router.py::test_router_001_simple_factual",
+      "outcome": "passed",
+      "duration": 0.0011150999998790212
+    },
+    {
+      "nodeid": "tests/router/test_cost_router.py::test_router_002_complex_multi_hop",
+      "outcome": "passed",
+      "duration": 0.0007810000024619512
+    },
+    {
+      "nodeid": "tests/router/test_cost_router.py::test_router_003_comparison",
+      "outcome": "passed",
+      "duration": 0.0024293999958899803
+    },
+    {
+      "nodeid": "tests/router/test_cost_router.py::test_router_004_weak_answer_escalates",
+      "outcome": "passed",
+      "duration": 0.0008584000024711713
+    },
+    {
+      "nodeid": "tests/router/test_cost_router.py::test_router_005_valid_answer_no_escalate",
+      "outcome": "passed",
+      "duration": 0.0006090999959269539
+    },
+    {
+      "nodeid": "tests/router/test_cost_router.py::test_simple_weak_retrieval",
+      "outcome": "passed",
+      "duration": 0.0030149000012897886
+    },
+    {
+      "nodeid": "tests/router/test_router_integration.py::test_router_integration_cache_miss",
+      "outcome": "passed",
+      "duration": 14.549522700006492
+    },
+    {
+      "nodeid": "tests/router/test_router_integration.py::test_router_escalation_integration",
+      "outcome": "passed",
+      "duration": 0.2127844999995432
+    },
+    {
+      "nodeid": "tests/security/test_authentication.py::test_missing_auth_header",
+      "outcome": "passed",
+      "duration": 0.006623200002650265
+    },
+    {
+      "nodeid": "tests/security/test_authentication.py::test_malformed_jwt",
+      "outcome": "passed",
+      "duration": 0.006285900002694689
+    },
+    {
+      "nodeid": "tests/security/test_authentication.py::test_expired_jwt",
+      "outcome": "passed",
+      "duration": 0.008168899999873247
+    },
+    {
+      "nodeid": "tests/security/test_authentication.py::test_tampered_jwt",
+      "outcome": "passed",
+      "duration": 0.00710580000304617
+    },
+    {
+      "nodeid": "tests/security/test_authorization.py::test_unauthorized_role",
+      "outcome": "passed",
+      "duration": 4.958579099999042
+    },
+    {
+      "nodeid": "tests/security/test_authorization.py::test_authorized_role",
+      "outcome": "passed",
+      "duration": 5.132290900000953
+    },
+    {
+      "nodeid": "tests/security/test_prompt_injection.py::test_ignore_acl_prompt",
+      "outcome": "passed",
+      "duration": 2.4641969000003883
+    },
+    {
+      "nodeid": "tests/security/test_retrieval_leakage.py::test_canary_leak",
+      "outcome": "passed",
+      "duration": 4.176296199999342
+    },
+    {
+      "nodeid": "tests/security/test_role_escalation.py::test_role_spoofing_in_body",
+      "outcome": "passed",
+      "duration": 3.11317450000206
+    },
+    {
+      "nodeid": "tests/security/test_tenant_isolation.py::test_cross_tenant_query",
+      "outcome": "passed",
+      "duration": 4.25970260000031
+    },
+    {
+      "nodeid": "tests/security/test_tenant_isolation.py::test_direct_cross_tenant_access",
+      "outcome": "passed",
+      "duration": 0.02038870000251336
+    },
+    {
+      "nodeid": "tests/unit/test_config.py::test_settings_defaults",
+      "outcome": "passed",
+      "duration": 0.0050715999968815595
+    },
+    {
+      "nodeid": "tests/unit/test_config.py::test_settings_override",
+      "outcome": "passed",
+      "duration": 0.004784500000823755
+    },
+    {
+      "nodeid": "tests/unit/test_evaluation.py::test_retrieval_metrics_golden",
+      "outcome": "passed",
+      "duration": 0.0004006000017398037
+    },
+    {
+      "nodeid": "tests/unit/test_ingestion.py::test_text_loader",
+      "outcome": "passed",
+      "duration": 0.00040209999860962853
+    },
+    {
+      "nodeid": "tests/unit/test_ingestion.py::test_markdown_loader",
+      "outcome": "passed",
+      "duration": 0.0005095999949844554
+    },
+    {
+      "nodeid": "tests/unit/test_ingestion.py::test_text_cleaner",
+      "outcome": "passed",
+      "duration": 0.0003874000030918978
+    },
+    {
+      "nodeid": "tests/unit/test_ingestion.py::test_chunker",
+      "outcome": "passed",
+      "duration": 0.0005740999986301176
+    }
+  ]
+}

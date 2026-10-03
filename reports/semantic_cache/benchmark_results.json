@@ -1,0 +1,53 @@
+{
+  "total_requests": 8,
+  "cache_hits": 1,
+  "cache_misses": 6,
+  "security_rejected": 1,
+  "cache_hit_rate": 12.5,
+  "llm_calls_avoided": 1,
+  "estimated_savings_percent": 25.0,
+  "average_latency_miss_ms": 5515.666666666667,
+  "average_latency_hit_ms": 228.0,
+  "details": [
+    {
+      "query": "What is the company leave policy?",
+      "cache_type": "MISS",
+      "latency_ms": 16751
+    },
+    {
+      "query": "What is the company leave policy?",
+      "cache_type": "MISS",
+      "latency_ms": 1153
+    },
+    {
+      "query": "How many days off do I get?",
+      "cache_type": "MISS",
+      "latency_ms": 1102
+    },
+    {
+      "query": "What is the internal guide?",
+      "cache_type": "MISS",
+      "latency_ms": 10888
+    },
+    {
+      "query": "Tell me about the internal guide",
+      "cache_type": "SEMANTIC_HIT",
+      "latency_ms": 228
+    },
+    {
+      "query": "What is my salary?",
+      "cache_type": "SECURITY_REJECTED",
+      "latency_ms": 564
+    },
+    {
+      "query": "Public info for ACME",
+      "cache_type": "MISS",
+      "latency_ms": 1800
+    },
+    {
+      "query": "Give me ACME public information",
+      "cache_type": "MISS",
+      "latency_ms": 1400
+    }
+  ]
+}

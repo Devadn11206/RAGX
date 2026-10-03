@@ -1,0 +1,41 @@
+{
+  "timestamp": "2026-10-02T19:35:41.660972+00:00",
+  "results": [
+    {
+      "id": "TC-SEM-01",
+      "pipeline_success": false,
+      "answer_correct": false,
+      "error": "disk I/O error"
+    },
+    {
+      "id": "TC-SEM-02",
+      "query": "What is the company leave policy?",
+      "answer": "According to the company leave policy, employees receive 24 days of annual leave per calendar year [Source 1]. Sick leave is provided separately, up to 10 paid days per year, provided that proper medical documentation is submitted [Source 1]. Additionally, any leave request exceeding 3 consecutive business days must be submitted at least 2 weeks in advance [Source 1].",
+      "pipeline_success": true,
+      "answer_correct": true,
+      "citation_matched": true,
+      "provider": null,
+      "fallback_used": false,
+      "latency_ms": 83,
+      "sources": [
+        "leave_policy.txt"
+      ]
+    },
+    {
+      "id": "TC-SEM-03",
+      "query": "What is the maximum upload size for a file?",
+      "answer": "The maximum file upload size is 50 MB for all standard tenant users, according to [Source 1].",
+      "pipeline_success": true,
+      "answer_correct": true,
+      "citation_matched": true,
+      "provider": null,
+      "fallback_used": false,
+      "latency_ms": 69,
+      "sources": [
+        "technical_limits.txt"
+      ]
+    }
+  ],
+  "all_pipeline_success": false,
+  "all_semantic_correctness": false
+}

@@ -1,0 +1,10 @@
+{
+    "graph_queries": 200,
+    "graph_usage_percent": 45.5,
+    "avg_graph_hops": 1.6,
+    "graph_latency_ms": 1105.0,
+    "vector_exact_match": 48.2,
+    "graph_exact_match": 71.5,
+    "graph_f1": 74.8,
+    "extraction_cost": 3.425
+}

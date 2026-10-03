@@ -1,0 +1,53 @@
+{
+  "timestamp": "2026-10-02T19:36:01.498058+00:00",
+  "total_queries_tested": 5,
+  "avg_latency_ms": 260.44,
+  "p50_latency_ms": 129.53,
+  "p95_latency_ms": 855.06,
+  "cold_start_latency_ms": 320.0,
+  "warm_start_avg_latency_ms": 260.44,
+  "cache_hit_latency_ms": 12.5,
+  "reranking_avg_latency_ms": 28.4,
+  "breakdown": [
+    {
+      "query": "What are the standard working hours?",
+      "latency_ms": 144.6,
+      "retrieval_latency_ms": 77,
+      "cache_type": "EXACT_HIT",
+      "provider": null,
+      "fallback_used": false
+    },
+    {
+      "query": "What is the company leave policy?",
+      "latency_ms": 129.53,
+      "retrieval_latency_ms": 79,
+      "cache_type": "EXACT_HIT",
+      "provider": null,
+      "fallback_used": false
+    },
+    {
+      "query": "What is the maximum upload size for a file?",
+      "latency_ms": 80.69,
+      "retrieval_latency_ms": 44,
+      "cache_type": "EXACT_HIT",
+      "provider": null,
+      "fallback_used": false
+    },
+    {
+      "query": "Tell me about the engineering limits and system requirements.",
+      "latency_ms": 855.06,
+      "retrieval_latency_ms": 805,
+      "cache_type": "MISS",
+      "provider": null,
+      "fallback_used": false
+    },
+    {
+      "query": "Compare working hours and remote policy.",
+      "latency_ms": 92.33,
+      "retrieval_latency_ms": 57,
+      "cache_type": "EXACT_HIT",
+      "provider": null,
+      "fallback_used": false
+    }
+  ]
+}

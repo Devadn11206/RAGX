@@ -1,0 +1,14 @@
+{
+  "project_name": "RAGX",
+  "project_type": "Multi-Tenant Hybrid RAG Engineering Platform",
+  "primary_language": "Python 3.12",
+  "frameworks": ["FastAPI", "Streamlit"],
+  "databases": ["PostgreSQL", "Qdrant", "Neo4j", "Redis"],
+  "models": ["Sentence-Transformers (all-MiniLM-L6-v2)", "Cross-Encoder (ms-marco-MiniLM-L-6-v2)"],
+  "llm_providers": ["Google Gemini", "Groq"],
+  "retrieval_methods": ["Dense Vector", "Sparse Lexical (BM25)", "GraphRAG", "RRF Fusion", "Cross-Encoder Reranking", "MMR"],
+  "security_features": ["JWT Authentication", "Role-Based Access Control (RBAC)", "Database-Layer Tenant Payload Filtering"],
+  "deployment_stack": ["Docker", "Docker Compose"],
+  "testing_status": "47/47 Regression, 11/11 Security Passed",
+  "benchmark_status": "Completed and Verified (Phase 14.1)"
+}

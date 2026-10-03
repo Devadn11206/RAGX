@@ -1,0 +1,5 @@
+{
+  "test_tenant_acme": "ACME_SECRET_CANARY_847291",
+  "test_tenant_globex": "GLOBEX_SECRET_CANARY_592814",
+  "test_tenant_initech": "INITECH_SECRET_CANARY_381920"
+}

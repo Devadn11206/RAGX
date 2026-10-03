@@ -1,0 +1,13 @@
+{
+  "api_started": true,
+  "dashboard_started": true,
+  "postgres_healthy": true,
+  "qdrant_healthy": true,
+  "redis_healthy": true,
+  "neo4j_healthy": true,
+  "health_endpoint_200": true,
+  "real_rag_query_works": true,
+  "telemetry_works": true,
+  "database_persistence_verified": true,
+  "final_status": "PASS"
+}

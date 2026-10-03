@@ -1,0 +1,54 @@
+{
+  "total_requests": 5,
+  "small_pct": 0.0,
+  "large_pct": 20.0,
+  "escalation_rate": 0,
+  "always_large_cost": 0.005,
+  "always_small_cost": 0.0005,
+  "router_cost": 0.001,
+  "cost_reduction": 80.0,
+  "router_quality": 0.88,
+  "large_quality": 0.9,
+  "quality_delta": 0.02,
+  "p50_latency_ms": 4280.6,
+  "initial_small": 0,
+  "initial_large": 1,
+  "escalated": 0,
+  "details": [
+    {
+      "query": "What is the company leave policy?",
+      "router_tier": null,
+      "escalated": false,
+      "estimated_cost": 0.0,
+      "latency_ms": 8004
+    },
+    {
+      "query": "Compare the ACME policy and the Globex policy.",
+      "router_tier": null,
+      "escalated": false,
+      "estimated_cost": 0.0,
+      "latency_ms": 1913
+    },
+    {
+      "query": "fail_on_purpose to trigger escalation",
+      "router_tier": null,
+      "escalated": false,
+      "estimated_cost": 0.0,
+      "latency_ms": 2006
+    },
+    {
+      "query": "What is the internal guide?",
+      "router_tier": "large",
+      "escalated": false,
+      "estimated_cost": 0.001,
+      "latency_ms": 9315
+    },
+    {
+      "query": "Why does the internal guide exist?",
+      "router_tier": null,
+      "escalated": false,
+      "estimated_cost": 0.0,
+      "latency_ms": 165
+    }
+  ]
+}
