@@ -50,8 +50,8 @@ def render_evaluation():
         
         comp_df = pd.DataFrame({
             "Metric": ["Recall@5", "MRR", "Correctness (LLM Judge)", "Relevance", "Faithfulness"],
-            "Baseline (Vector Only) [est.]": [f"{base_recall:.2f}", f"{base_mrr:.2f}", f"{base_correct:.2f}", "N/A", "N/A"],
-            "RAGX (Hybrid + Rerank)": [f"{ret.get('recall_at_5', 0):.2f}", f"{ret.get('mrr', 0):.2f}", f"{ans.get('correctness') or 0:.2f}", f"{ans.get('relevance') or 0:.2f}", f"{ans.get('faithfulness') or 0:.2f}"]
+            "Baseline (Vector Only) [Demo / Simulated]": [f"{base_recall:.2f}", f"{base_mrr:.2f}", f"{base_correct:.2f}", "N/A", "N/A"],
+            "RAGX (Hybrid + Rerank) [Demo / Simulated]": [f"{ret.get('recall_at_5', 0):.2f}", f"{ret.get('mrr', 0):.2f}", f"{ans.get('correctness') or 0:.2f}", f"{ans.get('relevance') or 0:.2f}", f"{ans.get('faithfulness') or 0:.2f}"]
         })
         st.table(comp_df.set_index("Metric"))
         

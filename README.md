@@ -10,76 +10,115 @@
 
 ## Overview
 
-RAGX is an advanced AI engineering platform built to solve the real-world complexities of deploying Retrieval-Augmented Generation (RAG) in production. Moving beyond simplistic "document-to-vector" tutorials, RAGX demonstrates how to handle strict data security, retrieval accuracy, latency optimization, and API resilience at scale.
+RAGX is a production-oriented RAG engineering platform. It was built to explore secure, reliable, cost-aware and high-quality retrieval systems beyond simple "document-to-vector" tutorials.
 
-At its core, RAGX guarantees strict multi-tenant isolation. It enforces JWT-based identity checks and injects tenant payload filters directly into the database queries (Qdrant, Neo4j, PostgreSQL), making unauthorized cross-tenant data leakage mathematically impossible at the database layer.
+At its core, RAGX enforces strict multi-tenant isolation. It injects JWT-based tenant payload filters directly into the database queries (Qdrant, Neo4j, PostgreSQL), ensuring secure data scoping at the database layer.
 
-To maximize answer accuracy, RAGX utilizes a parallel Hybrid Retrieval pipeline. It simultaneously executes Dense Vector similarity, Sparse BM25 exact-matching, and GraphRAG topological traversal. The results are merged via Reciprocal Rank Fusion (RRF), rescored by a local Cross-Encoder, and filtered via Maximal Marginal Relevance (MMR) before ever reaching the LLM. Furthermore, the system incorporates a Redis-backed semantic cache and an automated Gemini-to-Groq circuit breaker, ensuring that the platform remains fast and highly available even when external LLM APIs fail.
+To improve context relevance, RAGX utilizes a parallel Hybrid Retrieval pipeline. It simultaneously executes Dense Vector similarity, Sparse BM25 exact-matching, and GraphRAG topological traversal. The results are merged via Reciprocal Rank Fusion (RRF), rescored by a local Cross-Encoder, and filtered via Maximal Marginal Relevance (MMR) before reaching the LLM. Furthermore, the system incorporates a Redis-backed semantic cache and an automated Gemini-to-Groq circuit breaker, improving latency and maintaining availability during API rate limits.
 
-## Key Features
+## Architecture & Flow
 
-- **Multi-Tenant Security**: Strict, database-layer payload filtering to guarantee zero cross-tenant data leakage.
-- **Hybrid Retrieval**: Parallel execution of Vector (Qdrant) and Lexical (PostgreSQL) search fused via RRF.
-- **GraphRAG**: Neo4j-powered topological traversal for complex entity relationships.
-- **Cross-Encoder Reranking**: High-fidelity context rescoring to maximize MRR and nDCG.
-- **Semantic Cache**: Redis-backed query embedding cache to bypass LLM latency and costs.
-- **Cost-Aware Routing**: Smart query classification to route questions to the optimal pipeline.
-- **Circuit Breaker Fallback**: Automated, zero-downtime fallback from Google Gemini to Groq Llama-3 during `429` rate limits.
-- **Streamlit Observability**: Interactive dashboard for chat, pipeline tracing, and security auditing.
-- **Docker + CI/CD**: Fully containerized infrastructure reproducible with a single `docker compose` command.
-
-## What makes RAGX different?
-
-Most basic RAG setups follow a naive path:
-`Query → Vector Search → LLM`
-
-RAGX is built for engineering rigor:
-`Query → Authentication → Tenant Isolation → Semantic Cache → Query Analysis → Cost-Aware Routing → Hybrid Retrieval (Vector + Lexical + Graph) → RRF Fusion → Cross-Encoder Reranking → MMR → LLM (w/ Provider Fallback) → Citations → Telemetry`
-
-The project focuses on **quality, security, latency, cost, resilience, and observability** rather than just answer generation.
-
-## Architecture
-
-![Architecture](docs/architecture.md)
+```
+Query
+ ↓
+Tenant Authorization
+ ↓
+Semantic Cache
+ ↓
+Query Analysis
+ ↓
+Cost-Aware Routing
+ ↓
+Hybrid Retrieval
+ ├── Vector
+ ├── Lexical
+ └── GraphRAG
+ ↓
+RRF Fusion
+ ↓
+Cross-Encoder Reranking
+ ↓
+MMR
+ ↓
+LLM
+ ├── Gemini
+ └── Groq fallback
+ ↓
+Answer + Citations
+ ↓
+Telemetry / Audit
+```
 
 ## Tech Stack
 
-| Layer | Technology |
-|---|---|
-| API | FastAPI |
-| UI | Streamlit |
-| Language | Python 3.12 |
-| Embeddings | Sentence Transformers (`all-MiniLM-L6-v2`) |
-| Vector DB | Qdrant |
-| Lexical Retrieval | PostgreSQL (Full-Text Search) |
-| Graph DB | Neo4j |
-| Reranking | Cross-Encoder (`ms-marco-MiniLM-L-6-v2`) |
-| Cache | Redis |
-| Database | PostgreSQL |
-| Primary LLM | Google Gemini (1.5 Flash) |
-| Fallback LLM | Groq (Llama 3) |
-| Containerization | Docker & Docker Compose |
+- **API**: FastAPI, Python 3.12
+- **UI**: Streamlit
+- **Embeddings**: Sentence Transformers (`all-MiniLM-L6-v2`)
+- **Vector DB**: Qdrant
+- **Lexical Retrieval**: PostgreSQL (Full-Text Search)
+- **Graph DB**: Neo4j
+- **Reranking**: Cross-Encoder (`ms-marco-MiniLM-L-6-v2`)
+- **Cache**: Redis
+- **Primary LLM**: Google Gemini (1.5 Flash)
+- **Fallback LLM**: Groq (Llama 3)
+- **Containerization**: Docker & Docker Compose
 
-## Benchmark & Security Validation
+---
 
-RAGX includes a rigorous programmatic benchmarking suite (validated in Phase 14.1).
+# 📊 Benchmark Results
 
-### Retrieval Quality
+RAGX was evaluated across multiple retrieval configurations using a controlled benchmark.
 
-| Pipeline | Recall@5 | MRR | nDCG | F1 |
-|---|---:|---:|---:|---:|
-| Vector | 0.600 | 0.468 | 0.496 | 0.064 |
-| Hybrid | 0.592 | 0.457 | 0.486 | 0.047 |
-| Hybrid + GraphRAG | 0.600 | 0.468 | 0.496 | 0.060 |
-| Hybrid + Reranking + MMR | 0.600 | 0.468 | 0.496 | 0.064 |
+### Evaluation Dataset
+- **Questions**: 50
+- **Documents**: 3
+- **Evaluation Categories**: Factual, Semantic, Lexical, Multi-hop, Comparison, Policy, Adversarial, Tenant-specific.
 
-### Security Validation
+### Methodology
+All configurations were tested sequentially against the exact same 50-question dataset using local CPU inference. This ensured a controlled variable environment where the retrieval mode was the only changing factor. Exact Match and Token-level F1 were calculated automatically by comparing the final LLM output with reference answers.
 
+## Retrieval Benchmark
+
+| Pipeline | Recall@5 | MRR | F1 | Exact Match | P50 Latency |
+|---|---:|---:|---:|---:|---:|
+| Vector | 0.600 | 0.468 | 0.064 | 0.020 | 161 ms |
+| Vector + Lexical | 0.600 | 0.468 | 0.059 | 0.000 | 151 ms |
+| Hybrid (Vector + Lexical + Graph) | 0.600 | 0.468 | 0.060 | 0.000 | 149 ms |
+
+## Reranking Evaluation
+
+| Pipeline | Recall@5 | MRR | F1 | Exact Match | P50 Latency |
+|---|---:|---:|---:|---:|---:|
+| Hybrid + Reranking | 0.612 | 0.478 | 0.059 | 0.000 | 148 ms |
+| Hybrid + Reranking + MMR | 0.600 | 0.468 | 0.064 | 0.020 | 162 ms |
+
+## GraphRAG Evaluation
+GraphRAG topological traversal was evaluated for multi-hop reasoning. The measured F1 score for Hybrid + GraphRAG on this dataset was 0.060. 
+
+## Semantic Cache
+A sample validation consisting of 5 repeated queries demonstrated a 100% cache hit rate. Cache retrieval latency averaged ~5ms, bypassing full downstream LLM generation and network latency.
+
+## Security Validation
 - **47/47** System regression tests passed.
 - **11/11** Strict security tests passed.
 - **0** Cross-tenant leaks.
 - **0** Privilege escalations.
 - **0** Unauthorized chunks exposed.
+- **0** Canary leaks.
+
+## Provider Resilience
+Gemini → Groq fallback was successfully validated during simulated provider failure scenarios (HTTP 429 quota exhaustion), demonstrating seamless LLM traffic redirection via the custom Circuit Breaker.
+
+## Docker Validation
+The full infrastructure successfully builds and runs via a single `docker compose up -d` command, with all dependent services (Postgres, Qdrant, Redis, Neo4j, FastAPI, Streamlit) passing strict health checks.
+
+### Benchmark Limitations
+- **Small Dataset**: The benchmark was executed on a highly scoped synthetic dataset (3 documents, 50 questions). Results may not generalize to large production corpora.
+- **Strict Matching**: Token-level F1 and Exact Match strictly penalize verbose LLM answers even when the generated semantic fact is correct.
+- **Hardware Constraints**: Reranking and Embeddings were evaluated exclusively on CPU.
+- **Dashboard Values**: Certain metrics visualized in the UI dashboard during demonstration runs may represent simulated or sample data rather than rigorous aggregate benchmarking.
+
+---
 
 ## Quick Start (Deployment)
 
@@ -87,7 +126,7 @@ RAGX includes a rigorous programmatic benchmarking suite (validated in Phase 14.
 2. **Configure Environment Variables**:
    ```bash
    cp .env.example .env
-   # Edit .env and insert your GEMINI_API_KEY and GROQ_API_KEY
+   # Edit .env and insert your API keys (Gemini, Groq, etc.)
    ```
 3. **Start the Infrastructure**:
    ```bash
@@ -96,8 +135,6 @@ RAGX includes a rigorous programmatic benchmarking suite (validated in Phase 14.
 4. **Access the System**:
    - Streamlit Dashboard: `http://localhost:8501`
    - FastAPI Interactive Docs: `http://localhost:8000/docs`
-
-For detailed setup, see the [Deployment Guide](docs/deployment.md).
 
 ## Documentation Directory
 - [Architecture](docs/architecture.md)
